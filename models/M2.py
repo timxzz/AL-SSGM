@@ -183,7 +183,7 @@ class M2(nn.Module):
             h = F.relu(layer(h))
 
         mu = self.mu(h)
-        log_var = F.softplus(self.log_var(h))
+        log_var = self.log_var(h)
 
         return self.reparameterize(mu, log_var), mu, log_var
 
@@ -396,7 +396,7 @@ class M2_CNN(nn.Module):
         h = torch.cat([x, y], dim=1)
         h = self.en_layers(h)
         mu = self.mu(h)
-        log_var = F.softplus(self.log_var(h))
+        log_var = self.log_var(h)
 
         return self.reparameterize(mu, log_var), mu, log_var
 
